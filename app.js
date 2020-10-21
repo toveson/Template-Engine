@@ -75,7 +75,6 @@ function manager() {
     inquirer.prompt(manage).then(function (data) {
         const manager = new Manager(data.name, data.ID, data.email, data.officeNumber);
         employee.push(manager);
-        console.log('hit', data)
         if (!data.addMore) {
             return renderer()
         };
