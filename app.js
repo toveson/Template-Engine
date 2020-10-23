@@ -11,6 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 let employee = [];
 
+// Questions for all employee types
 function blanketQuestions(position) {
     return [
         {
@@ -31,6 +32,7 @@ function blanketQuestions(position) {
     ]
 };
 
+// Questions for specific employee type
 const positionQuestions = {
     manager: {
         type: 'number',
@@ -49,12 +51,14 @@ const positionQuestions = {
     }
 };
 
+// confirming if the user wants to add more employees or not
 const addMore = {
     type: 'confirm',
     name: 'addMore',
     message: 'Do you need to add additional employees?'
 };
 
+// starts the process of entering employees
 function start() {
     inquirer.prompt([
         {
@@ -67,7 +71,7 @@ function start() {
     })
 };
 
-
+// function to gather manager info
 function manager() {
     let manage = blanketQuestions('manager');
     manage.push(positionQuestions.manager, addMore);
@@ -82,7 +86,7 @@ function manager() {
     });
 };
 
-
+// function to determin what type of employee the user wants to add
 function employeeType(position) {
     inquirer.prompt([
         {
@@ -100,6 +104,7 @@ function employeeType(position) {
     });
 };
 
+// function to gather engineer info
 function enginner() {
     let newEngineer = blanketQuestions('enginner');
     newEngineer.push(positionQuestions.engineer, addMore);
@@ -114,6 +119,7 @@ function enginner() {
     });
 };
 
+// function to gather intern info
 function intern() {
     let newEngineer = blanketQuestions('intern');
     newEngineer.push(positionQuestions.engineer, addMore);
@@ -128,6 +134,7 @@ function intern() {
     });
 };
 
+// function to creat the html file from user input
 function renderer() {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
@@ -140,8 +147,5 @@ function renderer() {
     });
 };
 
+// Start the app!!!
 start();
-
-
-
-// I cant figure out why when I finish adding a manager it created my html page
